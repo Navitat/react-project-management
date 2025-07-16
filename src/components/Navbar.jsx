@@ -9,6 +9,9 @@ function Navbar() {
       <NavLink to="/projects">
         <button>Projects</button>
       </NavLink>
+      <NavLink to="/projects/create">
+        <button>Create Project</button>
+      </NavLink>
     </nav>
   );
 }
