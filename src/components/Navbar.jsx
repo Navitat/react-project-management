@@ -1,5 +1,16 @@
+import { NavLink } from "react-router-dom";
+
 function Navbar() {
-  return <h1>Welcome to Project Management</h1>;
+  return (
+    <nav className="Navbar">
+      <NavLink to="/">
+        <button>Home</button>
+      </NavLink>
+      <NavLink to="/projects">
+        <button>Projects</button>
+      </NavLink>
+    </nav>
+  );
 }
 
 export default Navbar;
