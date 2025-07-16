@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Loader from "../components/Loader";
@@ -9,6 +9,8 @@ function ProjectDetailsPage() {
   const [project, setProject] = useState(null);
 
   const { projectId } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -20,6 +22,17 @@ function ProjectDetailsPage() {
         console.log("Error getting project details from the API...", error)
       );
   }, [projectId]);
+
+  const deleteProject = () => {
+    axios
+      .delete(`${BASE_URL}/projects/${projectId}`)
+      .then((response) => {
+        navigate("/projects");
+      })
+      .catch((e) => {
+        console.log("ERROR on Delete: ", e);
+      });
+  };
 
   if (project === null) {
     return <Loader />;
@@ -33,6 +46,7 @@ function ProjectDetailsPage() {
       <Link to={`/projects/edit/${project.id}`}>
         <button>Edit</button>
       </Link>
+      <button onClick={deleteProject}>Delete</button>
       <div>
         <Link to="/projects">
           <button>Back to projects</button>
