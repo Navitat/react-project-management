@@ -12,7 +12,8 @@ function ProjectListPage() {
     axios
       .get(BASE_URL + "/projects")
       .then((response) => {
-        setProjects(response.data);
+        const projectsArr = response.data.toReversed();
+        setProjects(projectsArr);
       })
       .catch((error) => console.log("ERROR: cannot GET projects", error));
   }, []);
