@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import Loader from "../components/Loader";
 
@@ -30,6 +31,9 @@ function ProjectListPage() {
           <div key={project.id} className="card">
             <h3>{project.title}</h3>
             <p>{project.description}</p>
+            <Link to={`/projects/${project.id}`}>
+              <button>More Details</button>
+            </Link>
           </div>
         );
       })}
